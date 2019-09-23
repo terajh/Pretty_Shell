@@ -42,7 +42,6 @@ int parse_command(char *command, int *nr_tokens, char *tokens[])
 			if (!token_started) {
 				tokens[*nr_tokens] = curr;
 				*nr_tokens += 1;
-				tokens[*nr_tokens] = "\0";
 				token_started = true;
 			}
 		}
