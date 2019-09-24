@@ -169,10 +169,6 @@ With the system calls learned in the class and a few additional ones, you are re
 - Source: pa1.c (250 pts in total)
   - Points will be prorated by testcase results.
 
-- Git repository URL at git.ajou.ac.kr (10 pts)
-  - Refer to https://www.youtube.com/channel/UC-Un-7jmeP-1OaHkS7awO0Q for using gitlab at Ajou University.
-  - Will be announced shortly
-
 - Document: *One PDF* document (20 pts). It should include followings;
 	- Outline how programs are launched and how arguments are passed
   - How the time-out feature is implemented
@@ -183,5 +179,9 @@ With the system calls learned in the class and a few additional ones, you are re
     - No need to specify your name nor student ID on the document
   - DO NOT COMPRESS THE FILE
   - OTHERWISE YOU WILL GET 0 pts for the report
+
+- Git repository URL at git.ajou.ac.kr (10 pts)
+  - Refer to https://www.youtube.com/channel/UC-Un-7jmeP-1OaHkS7awO0Q for using gitlab at Ajou University.
+  - Will be announced shortly
 
 - WILL NOT ANSWER THE QUESTIONS ABOUT THOSE ALREADY SPECIFIED ON THE HANDOUT.
