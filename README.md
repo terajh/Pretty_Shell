@@ -154,6 +154,7 @@ With the system calls learned in the class and a few additional ones, you are re
 ### Restriction
 
 - TEST YOUR CODE ON YOUR COMPUTER FIRST. You can be penalized if you blow up the pasubmit system with an obvious mistake.
+- It would be best to use `make test-run`, `make test-timeout`, `make test-cd`, `make test-for`, and `make test-prompt` to run your implementation against corresponding testcases on your computer. `make test-all` runs all the tests one after the other. Have a look at `Makefile` to learn making test automatic.
 - DO NOT USE `system()` system call. You will get 0 pts if it is used.
 - You should implement the features by calling relevent system calls; just printing out expected results will make your score 0 pts for sure.
 - For your coding practice, the compiler is set to halt on some (important) warnings. Write your code to comply the C99 standard.
