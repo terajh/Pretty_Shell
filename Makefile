@@ -1,10 +1,15 @@
 TARGET	= mpsh
-CFLAGS	= -g -c -std=c99
+CFLAGS	= -g -c -D_POSIX_C_SOURCE
+CFLAGS += -std=c99 -Wimplicit-function-declaration -Werror
+CFLAGS += # Add your own cflags here
 LDFLAGS	=
 
-all: mpsh
+all: mpsh toy
 
-mpsh: pa1.o
+mpsh: pa1.o parser.o
+	gcc $(LDFLAGS) $^ -o $@
+
+toy: toy.o
 	gcc $(LDFLAGS) $^ -o $@
 
 %.o: %.c
@@ -12,4 +17,4 @@ mpsh: pa1.o
 
 .PHONY: clean
 clean:
-	rm -rf $(TARGET) *.o *.dSYM
+	rm -rf $(TARGET) toy *.o *.dSYM
