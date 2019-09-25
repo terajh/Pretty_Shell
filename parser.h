@@ -41,7 +41,8 @@
  *
  *
  * RETURN VALUE
- *  Return 0 after filling in @nr_tokens and @tokens[] properly
+ *  Return 1 if @nr_tokens > 0
+ *  Return 0 otherwise
  *
  */
 int parse_command(char *command, int *nr_tokens, char *tokens[]);
