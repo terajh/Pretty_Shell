@@ -17,7 +17,7 @@ With the system calls learned in the class and a few additional ones, you are re
 #### Execute commands (50 pts)
 - The primary role of shell is to execute the command specified in the command until user enters `exit`. Each command is comprised of one exeutable followed by zero or more arguments. For example;
 
-- ```shell
+- ```
   $ ./toy arg1 arg2 arg3 arg4
   pid  = xxxxxx
   argc = 5
@@ -54,6 +54,14 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - Use `toy` application for your development and testing. It will sleep for `@N` seconds if you run it with `sleep @N` as its arguments, as shown above.
 
+- (Updated Sep 27) When the specified command cannot be executed, print out a message to stderr.
+
+- ```C
+	if (unable to execute the specified command) {
+		fprintf(stderr, "No such file or directory\n");
+	}
+  ```
+
 - Hint: `fork(), exec(), wait(), waitpid(), getenv()`
 
 
@@ -61,7 +69,7 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - Let the shell detect non-finishing programs and terminiate them. Let `timeout` built-in command set the desired time out specified in seconds (2 by default). When the executing program does not return for the specified period, `mpsh` should terminate the program by sending a `SIGKILL` signal to it. When the timeout is set to 0, disable the timeout feature.
 
-- ```shell
+- ```
   $ timeout
   Current timeout is 0 second
   $ timeout 10
@@ -98,7 +106,7 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - Each user has one's *home directory* which is denoted by `~`. The actual path is defined in `$HOME` environment variable. Make `cd` command to understand it
 
-- ```shell
+- ```
   $ pwd
   /home/directory/of/your/account  # Assume this is the home directory of the user
   $ cd /somewhere/i/dont/know
@@ -115,7 +123,7 @@ With the system calls learned in the class and a few additional ones, you are re
 #### Repeat the command n times (50 pts)
 - Implement `for <N> <command ...>` built-in command to run the commands N-times. `for` can be nested.
 
-- ```shell
+- ```
   $ for 5 pwd
   /home/pasubmit/some/directory/in/depth
   /home/pasubmit/some/directory/in/depth
@@ -143,7 +151,7 @@ With the system calls learned in the class and a few additional ones, you are re
 #### Change prompt (20 pts)
 - Change the prompt with `prompt <new prompt>` command as follow:
 
-- ```shell
+- ```
   $ prompt #
   # prompt sce213
   sce213 prompt $
@@ -157,6 +165,7 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - DO NOT USE `system()` system call. You will get 0 pts if it is used.
 - For sure, you should implement the features by calling relevent system calls; just printing out expected results will make your score -250 pts.
+- (Updated Sep 27) DO NOT try to figure out the testing situation by parsing the number of tokens and/or token contents. Such a forged execution will be screened offline and punished with -250 pts as well.
 - TEST YOUR CODE ON YOUR COMPUTER FIRST. You might be be penalized if you blow up the pasubmit system multiple times with obvious mistakes. In this sense, it would be best to test your implementation on your machine using `make test-run`, `make test-timeout`, `make test-cd`, `make test-for`, and `make test-prompt`. `make test-all` runs all the tests one after the other. Have a look at `Makefile` to learn making test automatic.
 - For your coding practice, the compiler is set to halt on some (important) warnings. Write your code to comply the C99 standard.
 
@@ -182,6 +191,12 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - Git repository URL at git.ajou.ac.kr (10 pts)
   - Refer to https://www.youtube.com/channel/UC-Un-7jmeP-1OaHkS7awO0Q for using gitlab at Ajou University.
-  - Will be announced shortly
+	- You can register your git repository through PASubmit. The repository will be checked (at least) twice, during the registration and after the submission deadline. The status will be updated accordingly.
+	- How to create your repository to submit:
+		- Create a *private* project, and then push this repository onto there.
+		- Add the deploy key
+				- Gitlab: Settings/Repository/Deploy Keys
+				- Github: Settings/Deploy keys
+				- SSH: .ssh/authorized_keys
 
 - WILL NOT ANSWER THE QUESTIONS ABOUT THOSE ALREADY SPECIFIED ON THE HANDOUT.
