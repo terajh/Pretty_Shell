@@ -56,6 +56,8 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - (Updated Sep 27) When the specified command cannot be executed, print out a message to stderr.
 
+- (Updated Oct 1) Must handle `stdin` and `stdout` of the child process properly in case `exec()` fails. Otherwise, supposed-to-be the input of the child is flushed into the parent process' `stdin`, making *ghost* input to the parent process. On mac, this will not be happened since BSD libc does not flush the buffered input on child's exit. Nevertheless, you will need to handle this issue to pass the test on PASubmit.
+
 - ```C
 	if (unable to execute the specified command) {
 		fprintf(stderr, "No such file or directory\n");
@@ -166,6 +168,7 @@ With the system calls learned in the class and a few additional ones, you are re
 - DO NOT USE `system()` system call. You will get 0 pts if it is used.
 - For sure, you should implement the features by calling relevent system calls; just printing out expected results will make your score -250 pts.
 - (Updated Sep 27) DO NOT try to figure out the testing situation by parsing the number of tokens and/or token contents. Such a forged execution will be screened offline and punished with -250 pts as well.
+- (Updated Oct 1) Explaining the statement above in other words, implement only `prompt`, `timeout`, `for`, `cd`, and `exit` as built-in command (i.e., handle the features by the shell process), whereas other commands should be processed by ***external program***. Implementing external program's features (e.g., printing out a message for handling `echo` command) will be penalized as stated above.
 - TEST YOUR CODE ON YOUR COMPUTER FIRST. You might be be penalized if you blow up the pasubmit system multiple times with obvious mistakes. In this sense, it would be best to test your implementation on your machine using `make test-run`, `make test-timeout`, `make test-cd`, `make test-for`, and `make test-prompt`. `make test-all` runs all the tests one after the other. Have a look at `Makefile` to learn making test automatic.
 - For your coding practice, the compiler is set to halt on some (important) warnings. Write your code to comply the C99 standard.
 
@@ -193,10 +196,8 @@ With the system calls learned in the class and a few additional ones, you are re
   - Refer to https://www.youtube.com/channel/UC-Un-7jmeP-1OaHkS7awO0Q for using gitlab at Ajou University.
 	- You can register your git repository through PASubmit. The repository will be checked (at least) twice, during the registration and after the submission deadline. The status will be updated accordingly.
 	- How to create your repository to submit:
-		- Create a *private* project, and then push this repository onto there.
-		- Add the deploy key
-				- Gitlab: Settings/Repository/Deploy Keys
-				- Github: Settings/Deploy keys
-				- SSH: .ssh/authorized_keys
+		- Create a *private* project from https://git.ajou.ac.kr, and then push this repository onto there.
+		- Generate a deploy token from Settings/Repository/Deploy Token.
+		- Register at PASubmit using the repository URL, deploy token, and deploy password.
 
 - WILL NOT ANSWER THE QUESTIONS ABOUT THOSE ALREADY SPECIFIED ON THE HANDOUT.
