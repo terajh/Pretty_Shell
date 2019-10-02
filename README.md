@@ -34,7 +34,8 @@ With the system calls learned in the class and a few additional ones, you are re
   argv[1] = sleep
   argv[2] = 10
   ( ... toy will sleep for 10 seconds ... )
-  $
+  $ sleep 20
+	( ... sleep will be sleep for 10 seconds and killed)
   $ /bin/ls
   Makefile  pa1.c  parser.c  parser.o   toy    toy.o
   mpsh	  pa1.o  parser.h  README.md  toy.c  types.h
@@ -142,7 +143,7 @@ With the system calls learned in the class and a few additional ones, you are re
   hello world
   hello world
   hello world
-  $ for 20 for 10 echo for 2 echo nested for
+  $ for 20 for 10 for 2 echo nested for
   nested for
   (... 398 more "nested for" ...)
   nested for
@@ -168,7 +169,7 @@ With the system calls learned in the class and a few additional ones, you are re
 - DO NOT USE `system()` system call. You will get 0 pts if it is used.
 - For sure, you should implement the features by calling relevent system calls; just printing out expected results will make your score -250 pts.
 - (Updated Sep 27) DO NOT try to figure out the testing situation by parsing the number of tokens and/or token contents. Such a forged execution will be screened offline and punished with -250 pts as well.
-- (Updated Oct 1) Explaining the statement above in other words, implement only `prompt`, `timeout`, `for`, `cd`, and `exit` as built-in command (i.e., handle the features by the shell process), whereas other commands should be processed by ***external program***. Implementing external program's features (e.g., printing out a message for handling `echo` command) will be penalized as stated above.
+- (Updated Oct 1) Explaining the statement above in other words, implement only `prompt`, `timeout`, `for`, `cd`, and `exit` as *built-in command* (i.e., handle the features by the shell process), whereas other commands should be processed by *external program*. ***Implementing external program's features (e.g., printing out a message for handling `echo` command, sleeping/handling alarm by parsing `./toy` command and `sleep` argument, etc) will be penalized as stated above***
 - TEST YOUR CODE ON YOUR COMPUTER FIRST. You might be be penalized if you blow up the pasubmit system multiple times with obvious mistakes. In this sense, it would be best to test your implementation on your machine using `make test-run`, `make test-timeout`, `make test-cd`, `make test-for`, and `make test-prompt`. `make test-all` runs all the tests one after the other. Have a look at `Makefile` to learn making test automatic.
 - For your coding practice, the compiler is set to halt on some (important) warnings. Write your code to comply the C99 standard.
 
