@@ -253,7 +253,7 @@ int main(int argc, char * const argv[])
 	if ((ret = initialize(argc, argv))) return EXIT_FAILURE;
 
 	if (__verbose)
-		fprintf(stderr, "%s%s%s    ", __color_start, __prompt, __color_end);
+		fprintf(stderr, "%s%s%s ", __color_start, __prompt, __color_end);
 
 	while (fgets(command, sizeof(command), stdin)) {	
 		char *tokens[MAX_NR_TOKENS] = { NULL };
