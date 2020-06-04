@@ -1,6 +1,5 @@
-## Project #1: Oh my pretty shell
+## Project : pretty shell
 
-### *** Due on 11:59:59pm, October 9 (Wednesday)***
 
 > Mars will come to fear my botany powers.
 > -- <cite>Mark Watney, The Martian, 2015.</cite>
@@ -14,7 +13,7 @@ With the system calls learned in the class and a few additional ones, you are re
 - The shell program `mpsh` waits for your command line input after printing out a prompt `$`. When you enter a line of command, it will be parsed into tokens as of project assignment 0, and the framework will call `run_command()` function with the tokens. You need to implement following features in that function.
 
 
-#### Execute commands (50 pts)
+#### Execute commands
 - The primary role of shell is to execute the command specified in the command until user enters `exit`. Each command is comprised of one exeutable followed by zero or more arguments. For example;
 
 - ```
@@ -65,10 +64,8 @@ With the system calls learned in the class and a few additional ones, you are re
 	}
   ```
 
-- Hint: `fork(), exec(), wait(), waitpid(), getenv()`
 
-
-#### Terminate timed-out program (100 pts)
+#### Terminate timed-out program
 
 - Let the shell detect non-finishing programs and terminiate them. Let `timeout` built-in command set the desired time out specified in seconds (2 by default). When the executing program does not return for the specified period, `mpsh` should terminate the program by sending a `SIGKILL` signal to it. When the timeout is set to 0, disable the timeout feature.
 
@@ -98,12 +95,8 @@ With the system calls learned in the class and a few additional ones, you are re
   fprintf(stderr, "%s is timed out\n", name);
   ```
 
-- Hint: `sigaction(), alarm(), kill()`.
 
-- Make sure `alarm` is disabled once the program exits otherwise the shell itself might be be terminated. Use `sigaction` over `signal` for code portability. Also, have a look at `man 7 signal` to get an extensible explanation about signal handling.
-
-
-#### Change working directory (30 pts)
+#### Change working directory
 
 - Each process has so-called *working directory* on which the process is working. This value can be checked by executing `/bin/pwd` or calling `getcwd()` system call. Implement `cd` command which changes the current working directory.
 
@@ -123,7 +116,7 @@ With the system calls learned in the class and a few additional ones, you are re
 - Hints: `chdir(), getcwd(), getenv("HOME")`
 
 
-#### Repeat the command n times (50 pts)
+#### Repeat the command n times
 - Implement `for <N> <command ...>` built-in command to run the commands N-times. `for` can be nested.
 
 - ```
@@ -151,7 +144,7 @@ With the system calls learned in the class and a few additional ones, you are re
   ```
 
 
-#### Change prompt (20 pts)
+#### Change prompt 
 - Change the prompt with `prompt <new prompt>` command as follow:
 
 - ```
@@ -163,42 +156,3 @@ With the system calls learned in the class and a few additional ones, you are re
 
 - Note that the framework makes the prompt using the contents in `char __prompt[]`. You may set the value directly unlike `__timeout`.
 
-
-### Restriction
-
-- DO NOT USE `system()` system call. You will get 0 pts if it is used.
-- For sure, you should implement the features by calling relevent system calls; just printing out expected results will make your score -250 pts.
-- (Updated Sep 27) DO NOT try to figure out the testing situation by parsing the number of tokens and/or token contents. Such a forged execution will be screened offline and punished with -250 pts as well.
-- (Updated Oct 1 and 4) Implement only `prompt`, `timeout`, `for`, `cd`, and `exit` as *built-in command* (i.e., handle the features in the shell process), whereas other commands should be processed by *external programs* created with `fork()` and `exec()`. ***Implementing external program's features (e.g., printing out a message for handling `echo` command, sleeping/handling alarm by parsing `./toy` command and `sleep` argument, etc) will be penalized as stated above***
-- Test your code on your computer first. You might be be penalized if you blow up the pasubmit system multiple times with obvious mistakes. In this sense, it would be best to test your implementation on your machine using `make test-run`, `make test-timeout`, `make test-cd`, `make test-for`, and `make test-prompt`. `make test-all` runs all the tests one after the other. Have a look at `Makefile` to learn making test automatic.
-- For your coding practice, the compiler is set to halt on some (important) warnings. Write your code to comply the C99 standard.
-
-
-### Submission / Grading
-
-- Use [PAsubmit](https://sslab.ajou.ac.kr/pasubmit) for submission
-	- 280 pts in total
-
-- Source: pa1.c (250 pts in total)
-  - Points will be prorated by testcase results.
-
-- Document: *One PDF* document (20 pts). It should include followings;
-	- Outline how programs are launched and how arguments are passed
-  - How the time-out feature is implemented
-  - How the `for` built-in command is implemented
-  - Lesson learned (if you have any)
-  - NO MORE THAN ***THREE*** PAGES
-  - DO NOT INCLUDE COVER PAGE
-    - No need to specify your name nor student ID on the document
-  - DO NOT COMPRESS THE FILE
-  - OTHERWISE YOU WILL GET 0 pts for the report
-
-- Git repository URL at git.ajou.ac.kr (10 pts)
-  - Refer to https://www.youtube.com/channel/UC-Un-7jmeP-1OaHkS7awO0Q for using gitlab at Ajou University.
-	- You can register your git repository through PASubmit. The repository will be checked (at least) twice, during the registration and after the submission deadline. The status will be updated accordingly.
-	- How to create your repository to submit:
-		- Create a *private* project from http://git.ajou.ac.kr, and then push this repository onto there.
-		- Generate a deploy token from Settings/Repository/Deploy Token.
-		- Register at PASubmit using the repository URL, deploy token, and deploy password.
-
-- WILL NOT ANSWER THE QUESTIONS ABOUT THOSE ALREADY SPECIFIED ON THE HANDOUT.
